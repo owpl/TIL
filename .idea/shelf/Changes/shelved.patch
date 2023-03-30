@@ -1,0 +1,50 @@
+Index: 2023/effective-kotlin/3장.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/2023/effective-kotlin/3장.md b/2023/effective-kotlin/3장.md
+new file mode 100644
+--- /dev/null	(date 1678690220331)
++++ b/2023/effective-kotlin/3장.md	(date 1678690220331)
+@@ -0,0 +1,40 @@
++## 3장 재사용성
++
++### Item.19 Knowledge 를 반복하여 사용하지 말라
++
++의도된 정보(knowledge)를 반복하지마라.    
++스펙이 다르거나, 사용 목적이 다르다면 공통화 시키지 않아도 된다.   
++
++`개인적인 생각`  
++영원한 고민거리일듯. - 중복은 나쁜가 ?   
++[multi-module 사례](https://hyeon9mak.github.io/woowahan-multi-module/)   
++
++결국 사례 및 상황마다 다르고, 계속 고민하고 겪어야할 문제
++
++### Item.20 일반적인 알고리즘을 반복해서 구현하지 말라
++
++일반적인 알고리즘을 반복해서 만들지 말고, 표준 lib 을 사용해라. (한번 쯤 읽어보는게 좋음)   
++또한 반복해서 사용되는 알고리즘은 프로젝트 내부에 확장 함수로 제공하는 것을 고민해봐야한다.    
++
++### Item.21 일반적인 프로퍼티 패턴은 프로퍼티 위임으로 만들어라.
++
++kotlin에서는 위임을 구현하기 위해, by keyword를 사용할 수 있다.   
++by는 크게 2가지 용도로 사용할 수 있다. 
++
++- 1) Interface 의 구현을 위임한다.
++- 2) Accessor 의 구현을 위임한다. (set / get) 
++
++이번 Item 은 `2)` 에 대한 이야기.   
++일반적인 property 의 행위를 추출해서, by 로 구현을 위임할 수 있다.
++
++
++```kotlin
++val value by lazy { function() }
++```
++
++Delegates 는 위임을 위한 Standard lib. 
++위임과 관련된 코드를 직접 사용하기 위해선, ReadWriteProperty, ReadOnlyProperty 를 구현하여 사용할 수 있다.
++
++
++
++
